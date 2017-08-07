@@ -2,3 +2,7 @@
 /.metadata/
 /.settings/
 .classpath
+.project
+.cproject
+.settings/
+.metadata
