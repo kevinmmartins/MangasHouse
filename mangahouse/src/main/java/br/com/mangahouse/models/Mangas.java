@@ -1,28 +1,22 @@
 package br.com.mangahouse.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-@Entity(name="Manga")
-public class Manga {
+@Entity(name="mangas")
+public class Mangas {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "TITLE")
 	private String title;
 
 	@Lob
-	@Column(name = "DESC")
 	private String description;
 
-	@Column(name = "AUTHOR")
 	private String author;
 
 	public String getTitle() {
