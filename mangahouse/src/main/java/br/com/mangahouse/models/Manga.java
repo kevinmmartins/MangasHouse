@@ -1,6 +1,9 @@
 package br.com.mangahouse.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 
-@Entity(name = "mangas")
-public class Manga {
+@Entity(name = "Manga")
+public class Manga implements Serializable{
+
+	/**
+	 * Always change after make some change
+	 */
+	private static final long serialVersionUID = 6408644172540289190L;
 
 	@Column(name = "mangaId")
 	@Id
@@ -24,8 +33,8 @@ public class Manga {
 	@Lob
 	private String description;
 
-	@Column(name = "mangaAuthor", nullable = false, unique = false)
-	private String author;
+	@ManyToMany
+	private Collection<Author> authorList =  new HashSet<>();
 
 	@Column(name = "mangaPrice", nullable = false, unique = false)
 	private BigDecimal price;
@@ -46,14 +55,6 @@ public class Manga {
 		this.description = description;
 	}
 
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -62,10 +63,28 @@ public class Manga {
 		this.price = price;
 	}
 
+
+	public Collection<Author> getAuthorList() {
+		return authorList;
+	}
+
+	public void setAuthorList(Collection<Author> authorList) {
+		this.authorList = authorList;
+	}
+
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-
-		return "[Title: " + title + "] [Author: " + author + "]";
+		return "Manga [id=" + id + ", title=" + title + ", description=" + description + ", authorList=" + authorList
+				+ ", price=" + price + "]";
 	}
 
 }

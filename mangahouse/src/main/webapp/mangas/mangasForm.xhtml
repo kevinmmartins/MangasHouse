@@ -6,6 +6,11 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<h:head>
+	<meta charset="ISO-8859-1" />
+	<title>Manga Form</title>
+</h:head>
+
 <h:body>
 	<h:form>
 		<div>
@@ -22,8 +27,12 @@
 			<h:inputText value="#{mangasBean.manga.price}"></h:inputText>
 		</div>
 		<div>
-			<h:outputLabel value="Author"></h:outputLabel>
-			<h:inputText value="#{mangasBean.manga.author}"></h:inputText>
+			<h:outputLabel value="Author List" />
+			<h:selectManyListbox value="#{mangasBean.authorListId}"
+				converter="javax.faces.Integer">
+				<f:selectItems value="#{mangasBean.authorList}" var="author"
+					itemValue="#{author.id}" itemLabel="#{author.name}" />
+			</h:selectManyListbox>
 		</div>
 		<h:commandButton value="Post" action="#{mangasBean.save}"></h:commandButton>
 	</h:form>
