@@ -1,31 +1,33 @@
 package br.com.mangahouse.beans;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
+
+import org.apache.log4j.Logger;
 
 import br.com.mangahouse.dao.MangaDao;
-import br.com.mangahouse.models.Mangas;
+import br.com.mangahouse.models.Manga;
 
-@Named
-@RequestScoped
+@Model
 public class MangasBean {
 
+	static Logger logger = Logger.getLogger(MangasBean.class.getName());
+	
 	@Inject
 	private MangaDao dao;
 
-	private Mangas manga = new Mangas();
+	private Manga manga = new Manga();
 
 	public void save() {
 		dao.save(manga);
-		System.out.println("Manga Saved" + manga);
+		logger.info("Manga saved " + manga);
 	}
 
-	public Mangas getManga() {
+	public Manga getManga() {
 		return manga;
 	}
 
-	public void setManga(Mangas manga) {
+	public void setManga(Manga manga) {
 		this.manga = manga;
 	}
 

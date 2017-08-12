@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import br.com.mangahouse.models.Mangas;
+import br.com.mangahouse.models.Manga;
 
 public class MangaDao {
 
@@ -12,7 +12,7 @@ public class MangaDao {
 	private EntityManager entityManager;
 
 	@Transactional
-	public void save(Mangas manga) {
+	public void save(Manga manga) {
 		entityManager.persist(manga);
 	}
 
