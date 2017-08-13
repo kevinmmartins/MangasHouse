@@ -27,6 +27,10 @@
 			<f:facet name="header">Manga Price</f:facet>
             #{manga.price}
         </h:column>
+        <h:column>
+			<f:facet name="header">Publish Date</f:facet>
+            #{manga.publishDate.time}
+        </h:column>
 		<h:column>
 			<f:facet name="header">Author List</f:facet>
 			<ui:repeat value="#{manga.authorList}" var="author">
