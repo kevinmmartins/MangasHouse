@@ -103,6 +103,7 @@ public class Manga implements Serializable {
 		this.publishDate = publishDate;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Manga [id=" + id + ", title=" + title + ", description=" + description + ", authorList=" + authorList
