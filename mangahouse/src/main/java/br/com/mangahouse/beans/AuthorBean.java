@@ -18,10 +18,15 @@ public class AuthorBean {
 
 	private Author author = new Author();
 
-	public void save() {
+	public String save() {
+		try {
+			dao.save(author);
+			logger.info("Author saved " + author);
+		} catch (Exception e) {
+			logger.info("Cannot save author " + author);
+		}
 
-		dao.save(author);
-		logger.info("Author saved " + author);
+		return "/mangas/mangaList?faces-redirect=true";
 	}
 
 	@Override

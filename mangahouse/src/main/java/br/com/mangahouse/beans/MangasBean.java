@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -26,20 +28,32 @@ public class MangasBean {
 
 	private Manga manga = new Manga();
 	private List<Integer> authorListId = new ArrayList<>();
-
+	
+	@Inject
+	private FacesContext facesContent;
 
 	public String save() {
 		try {
 			setAuthorList();
 			dao.save(manga);
 			logger.info("Manga saved " + manga);
-			this.manga = new Manga();
-			this.authorListId = new ArrayList<>();
+			sendMessageSuccess();
 		} catch (Exception e) {
 			logger.error("Cannot save the manga " + manga, e);
+			sendMessageError();
 		}
 
 		return "/mangas/mangaList?faces-redirect=true";
+	}
+
+	private void sendMessageSuccess() {
+		facesContent.getExternalContext().getFlash().setKeepMessages(true);
+		facesContent.addMessage(null, new FacesMessage("Manga Saved"));
+	}
+
+	private void sendMessageError() {
+		facesContent.getExternalContext().getFlash().setKeepMessages(true);
+		facesContent.addMessage(null, new FacesMessage("Cannot save the manga"));
 	}
 
 	private void setAuthorList() {

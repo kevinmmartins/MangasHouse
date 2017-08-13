@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity(name = "Author")
 public class Author implements Serializable {
 
@@ -21,9 +23,11 @@ public class Author implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Length(min=20)
 	@Column(name = "authorName", nullable = false, unique = false)
 	private String name;
 
+	@Length(min=200)
 	@Column(name = "authorLastName", nullable = false, unique = false)
 	private String lastName;
 

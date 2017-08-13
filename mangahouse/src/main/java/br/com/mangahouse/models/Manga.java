@@ -12,6 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity(name = "Manga")
 public class Manga implements Serializable{
@@ -26,16 +31,21 @@ public class Manga implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Length(min=10)
 	@Column(name = "mangaTitle", nullable = false, unique = true)
 	private String title;
 
+	@Length(min=100)
 	@Column(name = "mangaDesc", nullable = false, unique = false)
 	@Lob
 	private String description;
 
 	@ManyToMany
+	@Size(min=1)
+	@NotNull
 	private Collection<Author> authorList =  new HashSet<>();
 
+	@DecimalMin("20")
 	@Column(name = "mangaPrice", nullable = false, unique = false)
 	private BigDecimal price;
 

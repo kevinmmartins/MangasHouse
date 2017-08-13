@@ -13,26 +13,36 @@
 
 <h:body>
 	<h:form>
+		<h:messages />
 		<div>
 			<h:outputLabel value="Title"></h:outputLabel>
-			<h:inputText value="#{mangasBean.manga.title}"></h:inputText>
+			<h:inputText value="#{mangasBean.manga.title}"
+				requiredMessage="Title is required" required="true" id="title"></h:inputText>
+				<h:message for="title"></h:message>
 		</div>
 		<div>
 			<h:outputLabel value="Description"></h:outputLabel>
 			<h:inputText rows="4" cols="20"
-				value="#{mangasBean.manga.description}"></h:inputText>
+				value="#{mangasBean.manga.description}"
+				requiredMessage="Description is required" required="true" id="description"></h:inputText>
+			<h:message for="description"></h:message>
 		</div>
 		<div>
 			<h:outputLabel value="Price"></h:outputLabel>
-			<h:inputText value="#{mangasBean.manga.price}"></h:inputText>
+			<h:inputText value="#{mangasBean.manga.price}" required="true" id="price"
+				requiredMessage="Price is required">
+				<f:validateLongRange minimum="1" maximum="100"></f:validateLongRange>
+			</h:inputText>
+			<h:message for="price"></h:message>
 		</div>
 		<div>
 			<h:outputLabel value="Author List" />
 			<h:selectManyListbox value="#{mangasBean.authorListId}"
-				converter="javax.faces.Integer">
+				converter="javax.faces.Integer" id="authorList">
 				<f:selectItems value="#{mangasBean.authorList}" var="author"
 					itemValue="#{author.id}" itemLabel="#{author.name}" />
 			</h:selectManyListbox>
+			<h:message for="authorList"></h:message>
 		</div>
 		<h:commandButton value="Post" action="#{mangasBean.save}"></h:commandButton>
 	</h:form>

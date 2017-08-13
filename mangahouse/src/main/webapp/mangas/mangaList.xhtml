@@ -11,6 +11,8 @@
 	<title>Manga List</title>
 </h:head>
 
+<h:messages />
+
 <h:body>
 	<h:dataTable var="manga" value="#{mangasListBean.mangaList}">
 		<h:column>
@@ -32,6 +34,12 @@
 			</ui:repeat>
 		</h:column>
 	</h:dataTable>
+	<div>
+		<h:link value="Add Manga" outcome="mangasForm"></h:link>
+	</div>
+	<div>
+		<h:link value="Add Author" outcome="authorForm"></h:link>
+	</div>
 </h:body>
 
 </html>
