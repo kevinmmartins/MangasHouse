@@ -13,7 +13,7 @@
 
 <h:body>
 	<h:messages />
-	<h:form>
+	<h:form enctype="multipart/form-data">
 		<div>
 			<h:outputLabel value="Title"></h:outputLabel>
 			<h:inputText value="#{mangasBean.manga.title}" required="true"
@@ -50,6 +50,11 @@
 				id="publish">
 			</h:inputText>
 			<h:message for="publish"></h:message>
+		</div>
+		<div>
+			<h:outputLabel value="Manga Image" />
+			<h:inputFile value="#{mangasBean.mangaImage}" id="mangaImage" />
+			<h:message for="mangaImage" />
 		</div>
 		<h:commandButton value="Post" action="#{mangasBean.save}"></h:commandButton>
 	</h:form>

@@ -27,7 +27,7 @@
 			<f:facet name="header">Manga Price</f:facet>
             #{manga.price}
         </h:column>
-        <h:column>
+		<h:column>
 			<f:facet name="header">Publish Date</f:facet>
             #{manga.publishDate.time}
         </h:column>
@@ -36,6 +36,11 @@
 			<ui:repeat value="#{manga.authorList}" var="author">
 				#{author.name}
 			</ui:repeat>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Manga Image</f:facet>
+			<img src="#{request.contextPath}/file/#{manga.patch}" height="30%"
+				alt="#{manga.title}" />
 		</h:column>
 	</h:dataTable>
 	<div>

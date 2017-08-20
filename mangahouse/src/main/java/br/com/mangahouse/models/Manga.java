@@ -55,6 +55,9 @@ public class Manga implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Calendar publishDate;
 
+	@Column(name = "mangaImage", nullable = true)
+	private String patch;
+
 	public String getTitle() {
 		return title;
 	}
@@ -103,7 +106,14 @@ public class Manga implements Serializable {
 		this.publishDate = publishDate;
 	}
 
-	
+	public String getPatch() {
+		return patch;
+	}
+
+	public void setPatch(String patch) {
+		this.patch = patch;
+	}
+
 	@Override
 	public String toString() {
 		return "Manga [id=" + id + ", title=" + title + ", description=" + description + ", authorList=" + authorList
