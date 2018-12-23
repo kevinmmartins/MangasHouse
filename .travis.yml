@@ -1,6 +1,6 @@
 language: java
 sudo: true
-before_script: cd InviteManager
+before_script: cd mangahouse
 dist: trusty
 cache:
   directories:
